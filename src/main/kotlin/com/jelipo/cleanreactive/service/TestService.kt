@@ -2,8 +2,8 @@ package com.jelipo.cleanreactive.service
 
 import com.jelipo.cleanreactive.entity.Info
 import com.jelipo.cleanreactive.repository.InfoRepository
+import kotlinx.coroutines.reactive.awaitFirst
 import org.springframework.stereotype.Service
-import reactor.core.publisher.Flux
 
 /**
  *
@@ -15,8 +15,8 @@ class TestService(
         private val infoRepository: InfoRepository
 ) {
 
-    suspend fun getAllInfo(): Flux<Info> {
-        return infoRepository.findAll()
+    suspend fun getAllInfo(): List<Info> {
+        return infoRepository.findAll().collectList().awaitFirst()
     }
 
 }

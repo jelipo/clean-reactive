@@ -1,5 +1,8 @@
 package com.jelipo.cleanreactive.ctrl
 
+import com.jelipo.cleanreactive.entity.Info
+import com.jelipo.cleanreactive.service.TestService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -13,9 +16,12 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/")
 class TestCtrl {
 
+    @Autowired
+    private lateinit var testService: TestService
+
     @GetMapping
-    suspend fun test(): String {
-        return ""
+    suspend fun test(): List<Info> {
+        return testService.getAllInfo()
     }
 
 }
