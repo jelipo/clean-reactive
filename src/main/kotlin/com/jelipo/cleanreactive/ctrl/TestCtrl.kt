@@ -20,7 +20,7 @@ class TestCtrl {
     private lateinit var testService: TestService
 
     @GetMapping
-    suspend fun test(): List<Info> {
+    suspend fun test(): MutableIterable<Info> {
         return testService.getAllInfo()
     }
 

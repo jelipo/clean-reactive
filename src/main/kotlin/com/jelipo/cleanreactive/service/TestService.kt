@@ -15,7 +15,9 @@ class TestService(
         private val infoRepository: InfoRepository
 ) {
 
-    suspend fun getAllInfo(): List<Info> {
+    suspend fun getAllInfo(): MutableIterable<Info> {
+        val pageable = infoRepository.findsome("test").collectList()
+
         return infoRepository.findAll().collectList().awaitFirst()
     }
 
