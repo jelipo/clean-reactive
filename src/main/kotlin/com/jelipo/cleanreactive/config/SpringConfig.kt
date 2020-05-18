@@ -3,8 +3,10 @@ package com.jelipo.cleanreactive.config
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.jelipo.cleanreactive.http.HttpService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.web.reactive.function.client.WebClient
 
 /**
  *
@@ -24,6 +26,11 @@ class SpringConfig {
             disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
             setSerializationInclusion(JsonInclude.Include.NON_NULL)
         }
+    }
+
+    @Bean
+    fun getHttpService(objectMapper: ObjectMapper, builder: WebClient.Builder): HttpService {
+        return HttpService(objectMapper, builder)
     }
 
 }
