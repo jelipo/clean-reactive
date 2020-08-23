@@ -7,5 +7,6 @@ import org.springframework.boot.runApplication
 class CleanReactiveApplication
 
 fun main(args: Array<String>) {
+
     runApplication<CleanReactiveApplication>(*args)
 }
